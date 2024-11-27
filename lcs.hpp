@@ -5,7 +5,7 @@
 
 struct LCSResult
 {
-    std::string result;
+    std::string subseq;
     size_t length;
 };
 

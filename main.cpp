@@ -14,10 +14,10 @@ int main(int argc, char** argv)
     std::getline(ifs, str2);
 
     std::cout << "String1: " << str1.length() << std::endl;
-    std::cout << "String2: " << str2.length() << std::endl; 
+    std::cout << "String2: " << str2.length() << std::endl;
 
-    auto result = calculate_lcs(str1.c_str(), str2.c_str());
-    std::cout << result->result << std::endl;
+    auto result = calculate_lcs("const a = 0;", "const b = 0;");
+    std::cout << result->subseq << std::endl;
     std::cout << result->length << std::endl;
     delete result;
 }

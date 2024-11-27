@@ -4,17 +4,17 @@
 #include <cstring>
 #include <stdexcept>
 
-void reconstruct_subsequence_from_c_array(LCSResult& lcsResult, int* c, const char* str1, const char* str2, int len1, int len2)
+void reconstruct_subsequence_from_c_array(LCSResult& lcsResult, int* c, const char* str1, const char* str2, size_t len1, size_t len2)
 {
-    int i = 0, j = 0, width = len2 + 1;
-    lcsResult.result = "";
+    size_t i = 0, j = 0, width = len2 + 1;
+    lcsResult.subseq = "";
 
     while (i < len1 && j < len2)
     {
         if (str1[i] == str2[j])
         {
-            lcsResult.result += str1[i];
-            ++i; 
+            lcsResult.subseq += str1[i];
+            ++i;
             ++j;
         }
         else if (c[j + (i + 1) * width] >= c[(j + 1) + i * width])
@@ -42,7 +42,7 @@ LCSResult* calculate_lcs(const char* str1, const char* str2)
     }
 
     LCSResult* lcsResult = new LCSResult();
-    lcsResult->result = "";
+    lcsResult->subseq = "";
 
     // initialize our c array
     int width = len2 + 1;
