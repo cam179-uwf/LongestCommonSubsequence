@@ -28,7 +28,7 @@ void reconstruct_subsequence_from_c_array(LCSResult& lcsResult, int* c, const ch
     }
 }
 
-LCSResult* calculate_lcs(const char* str1, const char* str2)
+LCSResult* calculate_lcs(const char* str1, const char* str2, bool shouldCalculateSubseq)
 {
     if (str1 == nullptr || str2 == nullptr || str1[0] == '\0' || str2[0] == '\0')
         throw std::runtime_error("One of the strings is too large or too small or null.");
@@ -78,7 +78,8 @@ LCSResult* calculate_lcs(const char* str1, const char* str2)
         if (i > 0) --i;
     }
 
-    reconstruct_subsequence_from_c_array(*lcsResult, c, str1, str2, len1, len2);
+    if (shouldCalculateSubseq)
+        reconstruct_subsequence_from_c_array(*lcsResult, c, str1, str2, len1, len2);
 
     lcsResult->length = c[0];
     delete[] c;
