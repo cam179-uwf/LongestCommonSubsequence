@@ -7,6 +7,8 @@ struct LCSResult
 {
     std::string subseq;
     size_t length;
+
+    LCSResult();
 };
 
 LCSResult* calculate_lcs(const char* str1, const char* str2, bool shouldCalculateSubseq = false);

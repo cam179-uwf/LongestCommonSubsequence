@@ -4,6 +4,12 @@
 #include <cstring>
 #include <stdexcept>
 
+LCSResult::LCSResult()
+{
+    this->length = 0;
+    this->subseq = "";
+}
+
 void reconstruct_subsequence_from_c_array(LCSResult& lcsResult, int* c, const char* str1, const char* str2, size_t len1, size_t len2)
 {
     size_t i = 0, j = 0, width = len2 + 1;
@@ -45,11 +51,11 @@ LCSResult* calculate_lcs(const char* str1, const char* str2, bool shouldCalculat
     lcsResult->subseq = "";
 
     // initialize our c array
-    int width = len2 + 1;
-    int size = (int)((len1 + 1) * width);
-    int* c = new int[size];
+    size_t width = len2 + 1;
+    size_t size = (len1 + 1) * width;
     
-    for (size_t i = 0; i < len1 + 1; ++i) 
+    int* c = new int[size];
+    for (size_t i = 0; i < size; ++i)
         c[i] = 0;
 
     size_t i = len1 - 1, j = len2 - 1;
