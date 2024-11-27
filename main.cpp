@@ -6,63 +6,7 @@
 
 #include "lcs.hpp"
 
-char get_similarity(std::string& str1, std::string& str2)
-{
-    std::cout << std::fixed << std::setprecision(2);
-
-    auto lcsResult = calculate_lcs(str1.c_str(), str2.c_str(), true);
-    char result;
-
-    // std::cout << lcsResult->length << " ";
-
-    if (str1.size() > str2.size())
-    {
-        float a = str2.size() / (float)str1.size();
-        float b = lcsResult->length / (float)str2.size();
-
-        if (a >= 0.9 && b >= 0.9)
-        {
-            result = 'H';
-        }
-        else if (a >= 0.8 && b >= 0.8)
-        {
-            result = 'M';
-        }
-        else if (a >= 0.6 && b >= 0.5)
-        {
-            result = 'L';
-        }
-        else
-        {
-            result = 'D';
-        }
-    }
-    else
-    {
-        float a = str1.size() / (float)str2.size();
-        float b = lcsResult->length / (float)str1.size();
-
-        if (a >= 0.9 && b >= 0.9)
-        {
-            result = 'H';
-        }
-        else if (a >= 0.8 && b >= 0.8)
-        {
-            result = 'M';
-        }
-        else if (a >= 0.6 && b >= 0.5)
-        {
-            result = 'L';
-        }
-        else
-        {
-            result = 'D';
-        }
-    }
-
-    delete lcsResult;
-    return result;
-}
+char get_similarity(std::string& str1, std::string& str2);
 
 int main(int argc, char** argv)
 {
@@ -163,4 +107,62 @@ int main(int argc, char** argv)
     }
 
     return EXIT_SUCCESS;
+}
+
+char get_similarity(std::string& str1, std::string& str2)
+{
+    std::cout << std::fixed << std::setprecision(2);
+
+    auto lcsResult = calculate_lcs(str1.c_str(), str2.c_str(), true);
+    char result;
+
+    // std::cout << lcsResult->length << " ";
+
+    if (str1.size() > str2.size())
+    {
+        float smallPercentageOfLarge = str2.size() / (float)str1.size();
+        float subseqPercentageOfSmall = lcsResult->length / (float)str2.size();
+
+        if (smallPercentageOfLarge >= 0.9 && subseqPercentageOfSmall >= 0.9)
+        {
+            result = 'H';
+        }
+        else if (smallPercentageOfLarge >= 0.8 && subseqPercentageOfSmall >= 0.8)
+        {
+            result = 'M';
+        }
+        else if (smallPercentageOfLarge >= 0.6 && subseqPercentageOfSmall >= 0.5)
+        {
+            result = 'L';
+        }
+        else
+        {
+            result = 'D';
+        }
+    }
+    else
+    {
+        float smallPercentageOfLarge = str1.size() / (float)str2.size();
+        float subseqPercentageOfSmall = lcsResult->length / (float)str1.size();
+
+        if (smallPercentageOfLarge >= 0.9 && subseqPercentageOfSmall >= 0.9)
+        {
+            result = 'H';
+        }
+        else if (smallPercentageOfLarge >= 0.8 && subseqPercentageOfSmall >= 0.8)
+        {
+            result = 'M';
+        }
+        else if (smallPercentageOfLarge >= 0.6 && subseqPercentageOfSmall >= 0.5)
+        {
+            result = 'L';
+        }
+        else
+        {
+            result = 'D';
+        }
+    }
+
+    delete lcsResult;
+    return result;
 }
