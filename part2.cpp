@@ -34,9 +34,9 @@ bool try_print_part2()
     bool shouldBreak = false;
 
     // header
-    std::cout << "  ";
+    std::cout << std::setw(4) << std::setfill(' ') << "";
     for (int i = 0; i < count; ++i)
-        std::cout << (i + 1) << " ";
+        std::cout << std::setw(2) << std::setfill('0') << (i + 1) << " ";
     std::cout << std::endl;
 
     for (int y = 0; y < count; ++y)
@@ -50,7 +50,7 @@ bool try_print_part2()
         ifs.clear();
         ifs.seekg(initialIndex);
 
-        std::cout << (y + 1) << " ";
+        std::cout << std::setw(2) << std::setfill('0') << (y + 1) << " ";
 
         for (int x = 0; x < count && !ifs.eof(); ++x)
         {
@@ -59,11 +59,11 @@ bool try_print_part2()
             if (x > y) 
             {
                 char similarity = get_similarity(str1, str2);
-                std::cout << similarity << " ";
+                std::cout << std::setw(3) << std::setfill(' ') << similarity;
             }
             else 
             {
-                std::cout << "- ";
+                std::cout << std::setw(3) << std::setfill(' ') << "-";
             }
         }
 
@@ -79,8 +79,6 @@ bool try_print_part2()
 
 char get_similarity(std::string& str1, std::string& str2)
 {
-    std::cout << std::fixed << std::setprecision(2);
-
     auto lcsResult = calculate_lcs(str1.c_str(), str2.c_str(), true);
     char result;
 
