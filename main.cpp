@@ -1,3 +1,9 @@
+/**
+ * Christian Marcellino
+ * COP4534 Project 5
+ * 11/30/2024
+ */
+
 #include <iostream>
 
 #include "part1.hpp"

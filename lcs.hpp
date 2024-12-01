@@ -1,3 +1,11 @@
+/**
+ * Christian Marcellino
+ * COP4534 Project 5
+ * 11/30/2024
+ *
+ * Tools for determining a strings longest common substring.
+ */
+
 #ifndef LCS
 #define LCS
 
